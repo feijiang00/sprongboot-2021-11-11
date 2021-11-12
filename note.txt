@@ -30,7 +30,32 @@ install 将 maven 打成 jar 包或 war 包发布到本地仓库。
 可以看到，最重要的信息就是springboot的版本号。如果不去分析原理，我们也知道了为什么我们在springboot项目中导入依赖不需要写版本号了，因为根据springboot的版本不同，springboot给我们配置了所有的依赖的最适合的版本，具体如何实现呢？
 在<artifactId>spring-boot-starter-parent</artifactId>里面有个<artifactId>spring-boot-dependencies</artifactId>，进入该文件则可以发现在<properties>标签中很多版本号。
 
+那么这些版本号的依赖给谁来使用呢？还是springboot
+关于springboot的启动场景starter
+例如这里的webstarter
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
+总结：由此，parent是解决版本冲突，starter则是简化配置
+
+
+—————————————————————————————
+yml的配置文件是主流，那么比如server.port的配置是给组件tmocat来使用，
+我们自定义的配置数据， 肯定要使用，如何获取呢？
+使用value注解
+格式：@Value(${user.name})
+
+那么全部的数据如何获取呢，每次都使用value注解很麻烦
+使用自动装配
+@Autowired
+private Enviroment env;
+
+其实主流的获取配置文件的数据还是封装对象直接传值(重点)
+1.定义类来对应yml中的一组数据
+2.将数据自动导入@ConfigurationProperties("datasource")
+3.最后还需要将这个类交给spring，即@Component
 
 
 

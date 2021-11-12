@@ -1,0 +1,15 @@
+整合第三方技术笔记：
+
+整合junit:
+导入starter启动场景
+使用@SpringBootTest修饰
+使用自动装配添加要测试的对象@Autowired
+
+
+整合mybatis：
+引入mybatis坐标，不过一般是勾选mybatis启动类starter
+在yml中配置数据库连接相关信息（在yml写了配置后，springboot会帮你自动配置）
+数据库sql映射需要添加@Mapper被容器识别到
+**当版本降低后，springboot降低后会报错，
+第一，在url后加上?serverTimezone=UTC
+第二，使用cj.jdbc.Driver
