@@ -1,0 +1,47 @@
+除了使用start.spring.io创建springboot
+还可以使用start.aliyun.io来创建spirngboot
+
+
+为什么springboot中导入依赖不需要指定版本号？
+这和maven的parent父工程有关，即maven的pom文件中的<parent>标签
+
+——————————————————————————————
+这里复习以下maven：
+因为，原先一个项目导入jar，随着项目越来越大，项目越来越多，导致两个问题
+其一，jar之间的冲突严重
+其二，重复的jar存在不同的项目之中，占用空间
+于是，maven出现了。
+
+complie，将 src/main/java 下的文件编译为 class 文件输出到 target
+test 会执行 src/test/java 下的单元测试类
+clean 执行 clean 会删除 target 目录及内容。
+package 对于 java 工程执行 package 打成 jar 包，对于 web 工程打成 war
+install 将 maven 打成 jar 包或 war 包发布到本地仓库。
+
+———————————————————————————————
+首先看看parent标签写了啥？
+ <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.6</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+可以看到，最重要的信息就是springboot的版本号。如果不去分析原理，我们也知道了为什么我们在springboot项目中导入依赖不需要写版本号了，因为根据springboot的版本不同，springboot给我们配置了所有的依赖的最适合的版本，具体如何实现呢？
+在<artifactId>spring-boot-starter-parent</artifactId>里面有个<artifactId>spring-boot-dependencies</artifactId>，进入该文件则可以发现在<properties>标签中很多版本号。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
