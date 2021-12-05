@@ -1,2 +1,17 @@
 server:
   port: 80
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/user
+#    username: root
+#    password: 123
+
+# 整合druid技术
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/user
+      username: root
+      password: 123
